@@ -1,0 +1,72 @@
+/* Body Styling */
+body {
+    background-image: url('https://agrigro.com/cdn/shop/files/elements-of-crop-production.jpg?v=1647550800'); /* Direct URL to the background image */
+    background-size: cover; /* Ensures the image covers the entire page */
+    background-position: center; /* Centers the image */
+    background-attachment: fixed; /* Keeps the background fixed while scrolling */
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: white; /* Set text color to white for contrast */
+}
+
+/* Container Styling */
+.container {
+    text-align: center;
+    padding: 50px;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background for readability */
+    border-radius: 10px;
+    max-width: 700px; /* Sets a max-width for the container */
+    margin: 50px auto; /* Centers the container */
+}
+
+/* Title Styling */
+h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+/* Button Container */
+.btn-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Adds space between the buttons */
+    margin-top: 30px;
+    flex-wrap: wrap; /* Ensures the buttons wrap on smaller screens */
+}
+
+/* Button Styling */
+.btn {
+    padding: 15px 30px;
+    margin: 10px;
+    font-size: 18px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.6); /* Dark background with transparency */
+    border: none;
+    text-decoration: none;
+    border-radius: 5px;
+    display: inline-block;
+    transition: background-color 0.3s, transform 0.2s ease-in-out; /* Adds smooth hover effects */
+}
+
+/* Button Hover Effect */
+.btn:hover {
+    background-color: rgba(0, 0, 0, 0.8); /* Darkens the button background on hover */
+    transform: scale(1.1); /* Slightly enlarges the button on hover */
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 28px;
+    }
+
+    .btn {
+        padding: 12px 25px;
+        font-size: 16px;
+    }
+
+    .btn-container {
+        flex-direction: column; /* Stack buttons vertically on mobile */
+        align-items: center; /* Centers the buttons on small screens */
+    }
+}

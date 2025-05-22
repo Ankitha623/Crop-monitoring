@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soil Moisture Prediction</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #1c1c1c;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #00ff99;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+        input[type="number"], select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #555;
+            font-size: 1rem;
+            color: #000;
+        }
+        button {
+            background-color: #00cc66;
+            color: white;
+            padding: 12px 20px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #00994d;
+        }
+        h3 {
+            text-align: center;
+            color: #00ff99;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌱 Soil Moisture Prediction</h1>
+        <form method="POST" id="soilForm">
+            <label for="temperature">Temperature (°C):</label>
+            <input type="number" id="temperature" name="temperature" required>
+
+            <label for="humidity">Humidity (%):</label>
+            <input type="number" id="humidity" name="humidity" required>
+
+            <label for="soil_type">Soil Type:</label>
+            <select id="soil_type" name="soil_type" required>
+                <option value="" disabled selected>Select Soil Type</option>
+                <option value="0">Sandy Soil</option>
+                <option value="1">Loamy Soil</option>
+                <option value="2">Clay Soil</option>
+            </select>
+
+            <button type="submit">Predict Moisture</button>
+        </form>
+
+        <div id="moistureResult"></div>
+    </div>
+
+    <script>
+        document.getElementById('soilForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const temperature = parseFloat(document.getElementById('temperature').value);  // Temperature is kept for future use
+            const humidity = parseFloat(document.getElementById('humidity').value);
+            const soilType = parseInt(document.getElementById('soil_type').value);
+
+            let minMoisture, maxMoisture;
+
+            // Define moisture ranges for each soil type
+            if (soilType === 0) { // Sandy Soil
+                minMoisture = 5;  // min moisture in % for Sandy Soil
+                maxMoisture = 15; // max moisture in % for Sandy Soil
+            } else if (soilType === 1) { // Loamy Soil
+                minMoisture = 15;
+                maxMoisture = 25;
+            } else if (soilType === 2) { // Clay Soil
+                minMoisture = 25;
+                maxMoisture = 35;
+            } else {
+                minMoisture = 10; // Default case (for safety)
+                maxMoisture = 20;
+            }
+
+            // Adjust moisture based on humidity (from 0% to 100%)
+            const moisture = (Math.random() * (maxMoisture - minMoisture) + minMoisture) * (humidity / 100);
+            const roundedMoisture = moisture.toFixed(2);
+
+            document.getElementById('moistureResult').innerHTML = `<h3>Predicted Soil Moisture: ${roundedMoisture}%</h3>`;
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Climate Prediction</title>
+    <link rel="stylesheet" href="static/styles.css"> <!-- Include your CSS -->
+</head>
+<body style="background-color: black; color: white; font-family: Arial, sans-serif; margin: 0; padding: 0;">
+
+    <div class="container" style="width: 80%; max-width: 900px; margin: 0 auto; padding: 2rem; background-color: rgba(0, 0, 0, 0.8); border-radius: 8px;">
+        <h1 style="text-align: center; font-size: 2rem;">🌦️ Climate Prediction</h1>
+        <form method="POST" style="margin-bottom: 2rem;">
+            <label for="temperature" style="display: block; margin: 10px 0; font-weight: bold; font-size: 1.1rem;">Temperature (°C):</label>
+            <select id="temperature" name="temperature" style="width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #ccc; font-size: 1.1rem; color: black;">
+                <option value="" disabled selected>Select temperature</option>
+                {% for i in range(1, 101) %}
+                    <option value="{{ i }}">{{ i }}°C</option>
+                {% endfor %}
+            </select>
+
+            <label for="humidity" style="display: block; margin: 10px 0; font-weight: bold; font-size: 1.1rem;">Humidity (%):</label>
+            <input type="number" id="humidity" name="humidity" placeholder="Enter humidity in %" required style="width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #ccc; font-size: 1.1rem; color: black;"/>
+
+            <label for="month" style="display: block; margin: 10px 0; font-weight: bold; font-size: 1.1rem;">Month :</label>
+            <select id="month" name="month" style="width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #ccc; font-size: 1.1rem; color: black;">
+                <option value="" disabled selected>Select Month</option>
+                <option value="1">January</option>
+                <option value="2">February</option>
+                <option value="3">March</option>
+                <option value="4">April</option>
+                <option value="5">May</option>
+                <option value="6">June</option>
+                <option value="7">July</option>
+                <option value="8">August</option>
+                <option value="9">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+            </select>
+
+            <button type="submit" style="padding: 12px; font-size: 1.2rem; background-color: #007BFF; border: none; color: white; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease;">
+                Predict Rainfall
+            </button>
+        </form>
+
+        {% if rainfall is not none %}
+            <h3 style="text-align: center; font-size: 1.5rem;">Predicted Rainfall: {{ rainfall }} mm</h3>
+        {% endif %}
+    </div>
+
+    <!-- Seasons Information -->
+    <div class="seasons-info" style="background-color: #333; padding: 20px; border-radius: 8px; margin-top: 3rem;">
+        <h2 style="font-size: 1.5rem; margin-bottom: 1rem; color: #FFD700; text-align: center;">🌦️ Seasonal Information</h2>
+
+        <p style="font-size: 1rem; line-height: 1.6; color: #DDD; margin-bottom: 1rem;">
+            <strong style="color: #FFD700;">Winter (December - February):</strong> This is the coldest season with low temperatures.
+            Ideal for crops like wheat and certain vegetables. Light irrigation is needed.
+        </p>
+
+        <p style="font-size: 1rem; line-height: 1.6; color: #DDD; margin-bottom: 1rem;">
+            <strong style="color: #FFD700;">Spring (March - May):</strong> A season of growth and rejuvenation. Rainfall starts to increase.
+            It is suitable for planting crops such as rice, corn, and cotton.
+        </p>
+
+        <p style="font-size: 1rem; line-height: 1.6; color: #DDD; margin-bottom: 1rem;">
+            <strong style="color: #FFD700;">Summer (June - August):</strong> A warm season with intense sunlight and high temperatures.
+            Crops like tomatoes, peppers, and melons thrive, but more water is needed.
+        </p>
+
+        <p style="font-size: 1rem; line-height: 1.6; color: #DDD; margin-bottom: 1rem;">
+            <strong style="color: #FFD700;">Fall (September - November):</strong> The harvest season. Crops such as pumpkins, apples, and
+            late-season grains are harvested. The weather is cooler with moderate rainfall.
+        </p>
+    </div>
+</body>
+</html>
